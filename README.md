@@ -18,4 +18,20 @@ It is intended to be a free OS that can work in both clinical and non-clinical N
 # Advantages
 * Benefits from Linux's inbuilt multi-user architecture
 * Low system requirements mean it performs well even on older hardware
-* 
+*
+
+use Android apps in the Desktop Mode, in Kiosk Mode, or on a Raspberry Pi
+
+**Clinicians are Power Users!** - you want to be able to optimise your workflow and have predictable, industry standard keyboard shortcuts that work across all your applications
+
+Per-user customisations synchronised between logins, from a server you control
+
+Thin-client Virtualisation Mode, allowing you to log into you own desktop on any machine and find it exactly how you left it
+
+Kiosk Mode
+
+Display Mode
+
+Dashboard Mode
+
+**Secure Instant Messaging for NHS Teams** - IM hosted inside the Health and Social Care Network, complete with desktop, iOS and Android mobile clients, and designed for the kinds of teams that exist in the NHS.

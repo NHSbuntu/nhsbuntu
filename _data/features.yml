@@ -1,20 +1,9 @@
 - title: Long term supported Ubuntu 16.04 LTS base
   description: — benefit from the stable codebase and huge app ecosystem of one of the most popular and widely-adopted Linux variants.
 
-- title: NHS Spine Two-factor Authentication
-  description: — mart Cards auth and Oxygen CIS built in, making Spine-approved 2FA a first-class citizen in the OS, not a bolt on SSO hack, or a creaky Java system-tray app
-
 - title: Multi-environment
   description: — works as a clinical OS, an office desktop OS, in kiosk for simple transactions and displays, and as a real-time dashboard.
 
-- title: Voice recognition Input
-  description: — offline and secure, it makes data input super-fast, satisfies Information Governance requirements and can be used for Patient Identifiable Data (PID).
-
-- title: Android containerization
-  description: — use Android apps on NHSbuntu in the Desktop Mode, in Kiosk Mode, even on a Raspberry Pi
-
-- title: Patient information displays
-  description: — display health promotion information, important organisation-wide bulletins, or real-time alerts and waiting times to your patients
-
-- title: Encryption By Default
+- title: Encrypted By Default
   description: — full-disk encrypted by default, whether used as a Live USB system, or installed to the hard disk.
+

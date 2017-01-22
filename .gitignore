@@ -4,6 +4,6 @@ _site/
 .jekyll-metadata
 
 # For dpkg-buildpackage output
-.changes
-.dsc
-.tar.gz
+*.changes
+*.dsc
+*.tar.gz

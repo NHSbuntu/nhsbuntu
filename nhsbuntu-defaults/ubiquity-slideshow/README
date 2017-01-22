@@ -1,0 +1,8 @@
+You can place custom slides and screenshots for any locale in
+slides/$LOCALE and slides/$LOCALE/screenshots.
+Note that screenshots in slides/C will appear for all slideshows, while
+screenshots for any other locale will only appear for that locale.
+
+Ubuntu installer slideshow customization, with pictures! - http://www.dylanmccall.com/blog/2012/09/05/installer-slideshow-customization/
+
+Ubiquity Slideshow - https://launchpad.net/ubiquity-slideshow-ubuntu

@@ -1,0 +1,16 @@
+# Language support included on built installer images. The user can still
+# select a different language than the ones included here, the language packs
+# and support packages will then be downloaded from the network.
+# Note that this does not affect package dependencies, only image builds, as
+# the set of support packages depends on the installed applications.
+#
+# Format: arbitrarily many lines, one language code per line. If the second
+# column is "complete", all additional support packages like LibreOffice help,
+# input methods, dictionaries etc. will be installed in addition; otherwise
+# only the language packs with the translations will be installed. Note that
+# complete language support takes a lot of CD space.
+#
+# Example:
+# de complete
+# es
+# zh-hans

@@ -1,0 +1,9 @@
+[Desktop Entry]
+# Example NHSmail web launcher
+Version=1.0
+Name=NHS Mail
+Comment=www.nhs.net
+Exec=/usr/bin/xdg-open https://www.nhs.net
+Type=Application
+Icon=applications-mail
+Categories=GNOME;GTK;Application;

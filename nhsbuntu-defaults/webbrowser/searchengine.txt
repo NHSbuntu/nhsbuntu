@@ -1,0 +1,11 @@
+# The search engine that will be selected by default.
+# For now only Firefox is supported.
+#
+# NotUbuntu: This may not be changed for Ubuntu localized images, only for
+# derivatives and OEM projects.
+#
+# Format: single line with search engine name
+#
+# Example:
+# Wikipedia (de)
+Google (en)

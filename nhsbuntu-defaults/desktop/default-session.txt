@@ -1,0 +1,11 @@
+# Set the default desktop session for login managers. Right now lightdm and
+# gdm are supported.
+#
+# NotUbuntu: This may not be changed for Ubuntu localized images, only for
+# derivatives and OEM projects.
+#
+# Format: Single line with a session name. This must correspond to
+# /usr/share/xsessions/<name>.desktop
+#
+# Example:
+# ubuntu-2d

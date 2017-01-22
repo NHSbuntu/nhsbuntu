@@ -1,0 +1,8 @@
+# List of radio stations in Rhythmbox and Banshee
+#
+# Format: arbitrarily many lines with
+# URL; Genre; Name
+#
+# Example:
+# http://www.radioparadise.com/musiclinks/rp_128.m3u; Eclectic Rock; Radio Paradise
+# http://www.swr3.de/wraps/musik/webradio/aplayer/stream_extern.php?format=mp3e&channel=0; Pop; SWR3

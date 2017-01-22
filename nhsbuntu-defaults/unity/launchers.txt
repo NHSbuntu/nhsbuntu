@@ -1,0 +1,11 @@
+# List of .desktop file names (without extension) with additional default launchers
+#
+# Format: arbitrarily many lines, one .desktop name (without extension) per line
+# An optional second word on the line specifies the package name which
+# provides this desktop file; this will be added to the defaults package's
+# dependencies, just like if it were added to "depends.txt".
+#
+# Example:
+# gnome-sudoku
+# simple-scan
+# sol aisleriot

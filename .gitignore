@@ -1,3 +1,9 @@
+# For Jekyll
 _site/
 .sass-cache/
 .jekyll-metadata
+
+# For dpkg-buildpackage output
+.changes
+.dsc
+.tar.gz

@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=NHSbuntu Logo
+Description=A theme that features a background with a logo.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/nhsbuntu-logo
+ScriptFile=/usr/share/plymouth/themes/nhsbuntu-logo/nhsbuntu-logo.script

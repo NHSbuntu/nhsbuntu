@@ -1,7 +1,0 @@
-#!/bin/sh
-set -e
-# Automatically added by dh_ubuntu_defaults
-if [ "$1" = remove -o "$1" = abort-install -o "$1" = disappear ]; then
-    dpkg-divert --package nhsbuntu-defaults --rename --divert /usr/lib/firefox/distribution/distribution.ini.ubuntu-defaults --remove /usr/lib/firefox/distribution/distribution.ini
-fi
-# End automatically added section

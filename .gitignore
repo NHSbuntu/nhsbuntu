@@ -11,6 +11,7 @@ _site/
 */build/
 */debian/files
 */debian/stamp-makefile-build
-*/debian/*.debhelper.log
+*/debian/*.debhelper
+*/debian/*.log
 */debian/*.substvars
 */debian/nhsbuntu-defaults

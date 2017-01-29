@@ -1,8 +1,8 @@
 Package: nhsbuntu-defaults
-Version: 0.1
+Version: 0.3
 Architecture: all
 Maintainer: Rob Dyke <robdyke@gmail.com>
-Installed-Size: 16
+Installed-Size: 106
 Conflicts: ubuntu-default-settings
 Provides: ubuntu-default-settings
 Section: metapackages

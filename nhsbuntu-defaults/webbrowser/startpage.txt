@@ -6,4 +6,3 @@
 #
 # Example:
 # http://www.ubuntuforums.org?release=${distro_release_number}
-https://portal.nhs.net

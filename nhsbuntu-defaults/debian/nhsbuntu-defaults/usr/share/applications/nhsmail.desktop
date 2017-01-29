@@ -1,9 +1,12 @@
 [Desktop Entry]
 # Example NHSmail web launcher
 Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/usr/bin/xdg-open https://www.nhs.net
+Icon=applications-mail
+StartupNotify=false
+Categories=X-XFCE;X-Xfce-Toplevel;
+OnlyShowIn=XFCE;
 Name=NHS Mail
 Comment=www.nhs.net
-Exec=/usr/bin/xdg-open https://www.nhs.net
-Type=Application
-Icon=applications-mail
-Categories=GNOME;GTK;Application;

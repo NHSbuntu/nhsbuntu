@@ -1,0 +1,15 @@
+- title: Voice recognition Input
+  description: — offline and secure voice recognition makes data input super-fast, satisfies Information Governance requirements and can be used for Patient Identifiable Data (PID).
+
+- title: Android containerization
+  description: — use Android apps on NHSbuntu in the Desktop Mode, in Kiosk Mode, even on a Raspberry Pi
+
+- title: Patient information displays
+  description: — display health promotion information, important organisation-wide bulletins, or real-time alerts and waiting times to your patients
+
+- title: Virtualisation and Emulation
+  description: — Run Windows applications in NHSbuntu using VirtualBox, Mono and Wine. Legacy applications need not force the Trust-wide purchase of an expensive, bloated and consumer-oriented Windows 10, or prevent you upgrading from an insecure legacy Windows XP.
+
+- title: Remote Support and Login
+  description: — built in standards-compliant remote support application, and remote desktop login.
+

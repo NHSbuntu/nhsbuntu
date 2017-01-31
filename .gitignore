@@ -8,3 +8,10 @@ _site/
 *.dsc
 *.tar.gz
 *.deb
+*/build/
+*/debian/files
+*/debian/stamp-makefile-build
+*/debian/*.debhelper
+*/debian/*.log
+*/debian/*.substvars
+*/debian/nhsbuntu-defaults

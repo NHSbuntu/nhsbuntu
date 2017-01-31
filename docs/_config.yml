@@ -3,7 +3,7 @@
 
 title: NHSbuntu
 url: https://open-health-hub.github.io/
-baseurl: /nhsbuntu
+baseurl: /nhsbuntu/docs
 google_analytics_key:
 google_maps_javascript_api_key:
 disqus_shortname:

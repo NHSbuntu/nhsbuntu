@@ -1,0 +1,14 @@
+# The following default association will either replace or be appended
+# to the existing applications system default for a given MIME type.
+# desktop files have to be provided without any extension.
+#
+# NotUbuntu: This may not be changed for Ubuntu localized images, only for
+# derivatives and OEM projects.
+#
+# Format: arbitrarily many lines with
+# MIMEtype desktopfile
+#
+# Example:
+# application/ogg banshee
+# x-scheme-handler/mailto thunderbird
+# x-foo/bar toto

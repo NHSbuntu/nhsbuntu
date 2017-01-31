@@ -1,0 +1,14 @@
+# Default keyboard layout for installer images built with this defaults
+# package.  Note that the defaults package itself does not configure the
+# layout, this only gets effective for image builds.
+#
+# Format: single line with
+# layout
+#    or
+# layout variant
+#
+# Check /usr/share/X11/xkb/rules/xorg.lst for the complete list of available
+# layouts and variants.
+#
+# Example:
+# de nodeadkeys

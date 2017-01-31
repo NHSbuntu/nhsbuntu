@@ -2,8 +2,8 @@
 # Site
 
 title: NHSbuntu
-url: https://open-health-hub.github.io/nhsbuntu/
-baseurl:
+url: https://open-health-hub.github.io/
+baseurl: /nhsbuntu
 google_analytics_key:
 google_maps_javascript_api_key:
 disqus_shortname:
@@ -11,7 +11,7 @@ disqus_shortname:
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: /siteicon.png
 description: NHSbuntu
-author: 
+author:
   name: openhealthhub.org
   email: info@openhealthhub.org
   twitter: open_health_hub

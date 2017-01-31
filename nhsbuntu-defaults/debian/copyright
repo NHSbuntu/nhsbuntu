@@ -1,0 +1,15 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: nhsbuntu-defaults
+Upstream-Contact: Rob Dyke <robdyke@gmail.com>
+
+Files: *
+Copyright: Open Health Hub CIC
+ Portions Copyright (C) 2011 Canonical Ltd.
+License: GPL-3+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+ .
+ The full text of the GPL is distributed as in
+ /usr/share/common-licenses/GPL-3 on Debian systems.

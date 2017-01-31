@@ -1,0 +1,18 @@
+# These packages will become recommends of the generated defaults package, i.
+# e. will be installed by default on a customized image, but can be removed by
+# the user without removing the defaults package. Requirements for
+# official Ubuntu customization packages:
+#
+# - They should not conflict to a default installation package, or add
+#   applications for a purpose which the default installation already has an
+#   application for. For example, don't add thunderbird or pidgin when we already
+#   have evolution or empathy
+# - They should preferably be in main. If they are not, consider writing a MIR,
+#   or add a justification to a comment in depends.txt or the changelog.
+#   Depending on universe packages will be a valid reason to reject an
+#   ubuntu-defaults package. 
+#
+# Format: arbitrarily many lines, one package name per line
+#
+# Example:
+# fortunes-de

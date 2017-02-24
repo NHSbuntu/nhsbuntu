@@ -15,3 +15,6 @@ _site/
 */debian/*.log
 */debian/*.substvars
 */debian/nhsbuntu-defaults
+
+# For source images we don't need to track
+/identity/source-logos(gitignore)/

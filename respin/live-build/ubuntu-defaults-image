@@ -1,0 +1,304 @@
+#! /bin/sh
+# Build an image based on an Ubuntu flavor plus a defaults package.
+#
+# Authors: Colin Watson <cjwatson@ubuntu.com>
+#          Martin Pitt <martin.pitt@ubuntu.com>
+# Copyright: (C) 2011 Canonical Ltd.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+LOCALE=
+PACKAGE=
+ARCH=
+COMPONENTS=
+MIRROR=
+SECURITY_MIRROR=
+PPAS=
+FLAVOR=ubuntu
+SUITE=$(lsb_release -sc)
+KEEP_APT_OPT=
+DELETE_APT_LISTS="rm -vf /var/lib/apt/lists/*_*"
+
+if which dpkg-architecture >/dev/null 2>&1; then
+	ARCH="$(dpkg-architecture -qDEB_HOST_ARCH)"
+fi
+
+help () {
+    cat >&2 <<EOF
+Usage: $0 {--locale code|--package name} [options]
+
+
+Options:
+  --locale ll_CC          : Same as --package ubuntu-defaults-ll-cc
+  --package               : Install additional package; can be a name or path to a local .deb
+  --arch                  : Architecture [default: $ARCH]
+  --flavor FLAVOR         : Flavor of Ubuntu [default: $FLAVOR]
+  --release RELEASE       : Ubuntu release the image is based on [default: $SUITE]
+  --components COMPONENTS : List of archive components to enable [default: main,restricted]
+  --mirror                : Ubuntu mirror to be used during build
+                            [default: http://archive.ubuntu.com/ubuntu/]
+  --security-mirror       : Ubuntu security mirror to be used during build
+                            [default: http://security.ubuntu.com/ubuntu/]
+  --ppa USER/PPANAME      : Enable additional PPA [default: none]
+  --keep-apt              : Do not remove apt indexes from live system
+  --keep-apt-components COMPONENTS : 
+                            Do not remove apt indexes for selected components from live
+                            system [default: none]
+
+EOF
+}
+
+# add $PPAS
+add_ppas () {
+    for ppa in $PPAS; do
+        local FINGERPRINT=`wget -q -O- https://launchpad.net/api/1.0/~${ppa%/*}/+archive/${ppa#*/}/signing_key_fingerprint`
+        if ! expr match "$FINGERPRINT" '^\"[a-zA-Z0-9]\{16,\}"$' >/dev/null; then
+            echo "Invalid fingerprint returned by Launchpad: $FINGERPRINT" >&2
+            exit 1
+        fi
+        # chop off enclosing quotes
+        FINGERPRINT=${FINGERPRINT%'"'}
+        FINGERPRINT=${FINGERPRINT#'"'}
+
+        # fetch GPG key
+        gpg --no-default-keyring --primary-keyring config/archives/ubuntu-defaults.key  --keyserver keyserver.ubuntu.com --recv-key "$FINGERPRINT"
+
+        # add ppa apt source
+        local DEB_PPA="deb http://ppa.launchpad.net/$ppa/ubuntu $SUITE main"
+        echo "$DEB_PPA" >> config/archives/ubuntu-defaults.list
+    done
+}
+
+eval set -- "$(getopt -o '' -l help,locale:,keep-apt,keep-apt-components:,package:,arch:,flavor:,release:,components:,mirror:,security-mirror:,ppa: -- "$@")" || { help; exit 1; }
+while :; do
+    case $1 in
+	--help)
+	    help
+	    exit 0
+	    ;;
+	--locale)
+	    LOCALE="$2"
+	    shift 2
+	    ;;
+	--package)
+	    PACKAGE="$2"
+	    shift 2
+	    ;;
+	--arch)
+	    ARCH="$2"
+	    shift 2
+	    ;;
+	--flavor)
+	    FLAVOR="$2"
+	    shift 2
+	    ;;
+	--release)
+	    SUITE="$2"
+	    shift 2
+	    ;;
+	--components)
+	    COMPONENTS="$(echo "$2" | sed 's/,/ /g' | tr -s ' ')"
+	    shift 2
+	    ;;
+	--mirror)
+	    MIRROR="$2"
+	    shift 2
+	    ;;
+	--security-mirror)
+	    SECURITY_MIRROR="$2"
+	    shift 2
+	    ;;
+	--ppa)
+	    if ! expr match "$2" '^[.[:alnum:]-]\+/[[:alnum:]-]\+$' >/dev/null; then
+		echo "Invalid PPA specification, must be lp_username/ppaname" >&2
+		exit 1
+	    fi
+	    PPAS="$PPAS $2"
+	    shift 2
+	    ;;
+        --keep-apt)
+            KEEP_APT_OPT="$1"
+            DELETE_APT_LISTS="rm -vf /var/lib/apt/lists/*_Translation-*"
+            shift
+            ;;
+        --keep-apt-components)
+            KEEP_APT_OPT="$1"
+            components="$(echo "$2" | sed 's/,/ /g')"
+            DELETE_APT_LISTS="rm -vf /var/lib/apt/lists/*_Translation-*
+rm -vf /var/lib/apt/lists/*_main_*
+rm -vf /var/lib/apt/lists/*_restricted_*
+rm -vf /var/lib/apt/lists/*_universe_*
+rm -vf /var/lib/apt/lists/*_multiverse_*"
+            for comp in $components; do
+                    case $comp in
+                            main|restricted|universe|multiverse)
+                                DELETE_APT_LISTS=$(echo "$DELETE_APT_LISTS" | grep -v $comp)
+                                ;;
+                            *)
+                                echo "ERROR: unknown component $comp"
+                                exit 1
+                                ;;
+                    esac
+            done
+            shift 2
+            ;;
+	--)
+	    shift
+	    break
+	    ;;
+	*)
+	    help
+	    exit 1
+	    ;;
+    esac
+done
+
+if ([ -z "$LOCALE" ] && [ -z "$PACKAGE" ]) || [ -z "$ARCH" ]; then
+    help
+    exit 1
+fi
+
+if ([ -n "$MIRROR" ] || [ -n "$SECURITY_MIRROR" ]) && [ -n "$KEEP_APT_OPT" ]; then
+    echo "ERROR: $KEEP_APT_OPT cannot currently be used along with --mirror or --security-mirror" >&2
+    exit 1
+fi
+
+if [ "$LOCALE" ] && [ -z "$PACKAGE" ]; then
+    PACKAGE="ubuntu-defaults-$(echo "$LOCALE" | tr '_A-Z' '-a-z')"
+fi
+
+if [ "$(id -u)" = 0 ]; then
+    SUDO=env
+else
+    SUDO=sudo
+fi
+
+# Make sure all our dependencies (which are Recommends of our package) are
+# installed.  This is a bit dubious long-term, but seems to be needed to
+# make autobuilds reliable.
+case $ARCH in
+    *amd64|*i386)
+	$SUDO apt-get -y install syslinux-themes-ubuntu syslinux-themes-ubuntu-$SUITE gfxboot-theme-ubuntu memtest86+ syslinux || exit 1
+	;;
+esac
+$SUDO apt-get -y install genisoimage
+
+rm -rf auto
+mkdir -p auto
+for f in config build clean; do
+    ln -s "/usr/share/livecd-rootfs/live-build/auto/$f" auto/
+done
+$SUDO lb clean
+rm -f .stage/config
+
+SUITE="$SUITE" PROJECT="$FLAVOR" ARCH="$ARCH" LB_ARCHITECTURES="$ARCH" \
+    LB_MIRROR_BOOTSTRAP="$MIRROR" LB_MIRROR_CHROOT_SECURITY="$SECURITY_MIRROR" \
+    IMAGEFORMAT=squashfs BINARYFORMAT=iso-hybrid LB_ISO_VOLUME="NHSbuntu xenial $(date +%Y%m%d-%H:%M)" lb config
+
+if [ "$COMPONENTS" ]; then
+    sed -i "s/^\\(LB_PARENT_ARCHIVE_AREAS=\\).*/\\1\"$COMPONENTS\"/" \
+	config/bootstrap
+fi
+
+sed -i "s/^\\(LB_SYSLINUX_THEME=\\).*/\\1\"ubuntu-$SUITE\"/" config/binary
+echo "ISO_TITLE=\"NHSbuntu\"" >> config/binary
+
+if [ "${PACKAGE%.deb}" = "$PACKAGE" ]; then
+    # package name, apt-get'able
+    echo "$PACKAGE" >> config/package-lists/ubuntu-defaults.list.chroot_install
+else
+    # local deb
+    cp "$PACKAGE" config/packages.chroot/
+fi
+
+if [ -n "$PPAS" ]; then
+    add_ppas
+fi
+
+PACKAGENAME=${PACKAGE%%_*}
+PACKAGENAME=${PACKAGENAME##*/}
+
+# install language support hook (try the one from the source tree first)
+HOOK=$(dirname $(readlink -f $0))/../lib/language-support-hook
+if ! [ -e "$HOOK" ]; then
+    HOOK=/usr/share/ubuntu-defaults-builder/language-support-hook
+fi
+sed "s/#DEFAULTS_PACKAGE#/$PACKAGENAME/" < "$HOOK" > config/hooks/00_language-support.chroot
+
+# work around live-build failure with lzma initramfs (Debian #637979)
+sed -i 's/^LB_INITRAMFS_COMPRESSION="lzma"/LB_INITRAMFS_COMPRESSION="gzip"/' config/common
+
+# run hooks from defaults package
+cat <<EOF > config/hooks/10_ubuntu-defaults.chroot
+#!/bin/sh
+set -e
+HOOK=/usr/share/$PACKAGENAME/hooks/chroot
+if [ -x \$HOOK ]; then
+    \$HOOK
+fi
+EOF
+
+# clean up files that we do not need
+cat <<EOF > config/hooks/90_cleanup.chroot
+#!/bin/sh
+set -e
+echo "$0: Removing unnecessary files..."
+rm -vf /var/cache/apt/*cache.bin
+$DELETE_APT_LISTS
+rm -vrf /tmp/*
+EOF
+
+# rename kernel and initrd to what syslinux expects
+cat <<EOF > config/hooks/rename-kernel.binary
+#!/bin/sh -e
+if [ ! -e binary/casper/initrd.lz ]; then
+    echo "\$0: Renaming initramfs to initrd.lz..."
+    zcat binary/casper/initrd.img-* | lzma -c > binary/casper/initrd.lz
+    rm binary/casper/initrd.img-*
+fi
+if [ ! -e binary/casper/vmlinuz ]; then
+    echo "\$0: Renaming kernel to vmlinuz..."
+    # This will go wrong if there's ever more than one vmlinuz-* after
+    # excluding *.efi.signed.  We can deal with that if and when it arises.
+    for x in binary/casper/vmlinuz-*; do
+	case \$x in
+	    *.efi.signed)
+		;;
+	    *)
+		mv \$x binary/casper/vmlinuz
+		if [ -e "\$x.efi.signed" ]; then
+		    mv \$x.efi.signed binary/casper/vmlinuz.efi
+		fi
+		;;
+	esac
+    done
+fi
+EOF
+
+# set default language
+cat <<EOF > config/hooks/default-language.binary
+#!/bin/sh -e
+LOC=chroot/usr/share/$PACKAGENAME/language.txt
+if [ -e "\$LOC" ]; then
+    echo "\$0: \$LOC exists, setting gfxboot default language..."
+    cp "\$LOC" binary/isolinux/lang
+    echo >> binary/isolinux/lang
+else
+    echo "\$0: \$LOC does not exist, not setting gfxboot default language"
+fi
+EOF
+
+DISPLAY= $SUDO PROJECT="$FLAVOR" ARCH="$ARCH" LB_ISO_VOLUME="NHSbuntu xenial $(date +%Y%m%d-%H:%M)" lb build

@@ -1,0 +1,203 @@
+#!/bin/sh
+
+## live-build(7) - System Build Scripts
+## Copyright (C) 2006-2012 Daniel Baumann <daniel@debian.org>
+##
+## This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
+## This is free software, and you are welcome to redistribute it
+## under certain conditions; see COPYING for details.
+
+
+set -e
+
+# Including common functions
+( . "${LIVE_BUILD}/scripts/build.sh" > /dev/null 2>&1 || true ) || . /usr/lib/live/build.sh
+
+# Setting static variables
+DESCRIPTION="$(Echo 'install disk information into binary')"
+HELP=""
+USAGE="${PROGRAM} [--force]"
+
+Arguments "${@}"
+
+# Reading configuration files
+Read_conffiles config/all config/common config/bootstrap config/chroot config/binary config/source
+Set_defaults
+
+case "${LB_BINARY_IMAGES}" in
+	iso*|hdd*)
+		;;
+	*)
+		exit 0
+		;;
+esac
+
+Echo_message "Begin installing disk information..."
+
+# Requiring stage file
+Require_stagefile .build/config .build/bootstrap
+
+# Checking stage file
+Check_stagefile .build/binary_disk
+
+# Checking lock file
+Check_lockfile .lock
+
+# Creating lock file
+Create_lockfile .lock
+
+mkdir -p binary/.disk
+
+ARCHITECTURE="$(echo ${LB_ARCHITECTURES} | sed -e 's| |/|g')"
+DISTRIBUTION="$(echo ${LB_DISTRIBUTION} | cut -b 1 | tr '[a-z]' '[A-Z]')"
+DISTRIBUTION="${DISTRIBUTION}$(echo ${LB_DISTRIBUTION} | cut -b 2-)"
+eval VERSION="$`echo RELEASE_${LB_DISTRIBUTION}`"
+
+case "${LB_MODE}" in
+	debian)
+		TITLE="Debian GNU/Linux"
+		STRING="Official Snapshot ${ARCHITECTURE}"
+		TRACE="project/trace/ftp-master.debian.org"
+		;;
+
+	ubuntu)
+		TITLE="$ISO_TITLE"
+		STRING="Build ${ARCHITECTURE}"
+		TRACE=""
+		;;
+
+	kubuntu)
+		TITLE="Kubuntu"
+		STRING="Build ${ARCHITECTURE}"
+		TRACE=""
+		;;
+
+	progress)
+		TITLE="Progress Linux"
+		STRING="${VERSION} (${DISTRIBUTION}) - ${ARCHITECTURE}"
+		TRACE="project/trace/archive-master.progress-linux.org"
+		;;
+
+	*)
+		TITLE="Debian GNU/Linux"
+		STRING="Snapshot ${ARCHITECTURE}"
+		TRACE=""
+		;;
+esac
+
+if [ -n "${TRACE}" ]
+then
+	echo "$(wget -q ${LB_PARENT_MIRROR_BOOTSTRAP}/${TRACE} -O - | head -n 1)" \
+	> binary/.disk/archive_trace
+fi
+
+case "${LB_INITRAMFS}" in
+	casper)
+		for INITRD in binary/casper/initrd.img*
+		do
+			mkdir -p binary/uuid
+			cd binary/uuid
+
+			case "${LB_INITRAMFS_COMPRESSION}" in
+				gzip)
+					zcat "../../${INITRD}" | cpio --quiet -id conf/uuid.conf
+					;;
+
+				bzip2)
+					bzcat "../../${INITRD}" | cpio --quiet -id conf/uuid.conf
+					;;
+
+				lzma)
+					lzcat -S "" "../../${INITRD}" | cpio --quiet -id conf/uuid.conf
+					;;
+			esac
+
+			if [ -e conf/uuid.conf ]
+			then
+				mv conf/uuid.conf "../.disk/casper-uuid${INITRD#binary/casper/initrd.img}"
+			else
+				Echo_warning "Failed to find casper uuid.conf in '${INITRD}'"
+			fi
+
+			cd ${OLDPWD}
+			rm -rf binary/uuid
+		done
+		;;
+esac
+
+case "${LB_DEBIAN_INSTALLER}" in
+	cdrom)
+		echo "main" > binary/.disk/base_components
+
+		touch binary/.disk/base_installable
+
+		echo "full_cd" > binary/.disk/cd_type
+
+		echo "${TITLE} ${VERSION} \"${DISTRIBUTION}\" - ${STRING} LIVE/CD Binary $(date +%Y%m%d-%H:%M)" > binary/.disk/info
+
+		for LOCATION in "${LIVE_BUILD}/data/debian-cd" /usr/share/live/build/data/debian-cd
+		do
+			if [ -e "${LOCATION}" ]
+			then
+				cp "${LOCATION}/${LB_PARENT_DISTRIBUTION}/${LB_ARCHITECTURES}_udeb_include" binary/.disk/udeb_include
+
+				continue
+			fi
+		done
+		;;
+
+	true|netinst|live)
+		echo "main" > binary/.disk/base_components
+
+		touch binary/.disk/base_installable
+
+		if [ "${LB_DEBIAN_INSTALLER}" = "live" ]
+		then
+			echo "live" > binary/.disk/cd_type
+			echo "${TITLE} ${VERSION} \"${DISTRIBUTION}\" - ${STRING} LIVE/INSTALL Binary $(date +%Y%m%d-%H:%M)" > binary/.disk/info
+		else
+			echo "not_complete" > binary/.disk/cd_type
+			echo "${TITLE} ${VERSION} \"${DISTRIBUTION}\" - ${STRING} LIVE/NETINST Binary $(date +%Y%m%d-%H:%M)" > binary/.disk/info
+		fi
+
+		for LOCATION in "${LIVE_BUILD}/data/debian-cd" /usr/share/live/build/data/debian-cd
+		do
+			if [ -e "${LOCATION}" ]
+			then
+				cp "${LOCATION}/${LB_PARENT_DISTRIBUTION}/${LB_ARCHITECTURES}_netinst_udeb_include" binary/.disk/udeb_include
+
+				continue
+			fi
+		done
+
+		if [ "${LB_DEBIAN_INSTALLER}" = "live" ]
+		then
+			echo "live-installer" >> binary/.disk/udeb_include
+		fi
+		;;
+
+	businesscard)
+		echo "main" > binary/.disk/base_components
+
+		echo "not_complete" > binary/.disk/cd_type
+
+		echo "${TITLE} ${VERSION} \"${DISTRIBUTION}\" - ${STRING} LIVE/BC Binary $(date +%Y%m%d-%H:%M)" > binary/.disk/info
+
+		for LOCATION in "${LIVE_BUILD}/data/debian-cd" /usr/share/live/build/data/debian-cd
+		do
+			if [ -e "${LOCATION}" ]
+			then
+				cp "${LOCATION}/${LB_PARENT_DISTRIBUTION}/${LB_ARCHITECTURES}_businesscard_udeb_include" binary/.disk/udeb_include
+
+				continue
+			fi
+		done
+		;;
+
+	false)
+		echo "${TITLE} ${VERSION} \"${DISTRIBUTION}\" - ${STRING} LIVE Binary $(date +%Y%m%d-%H:%M)" > binary/.disk/info
+		;;
+esac
+
+# Creating stage file
+Create_stagefile .build/binary_disk

@@ -1,8 +1,0 @@
-# The following URL will become the web browser start page.
-# For now only Firefox is supported.
-#
-# Format: single line with an URL. Using the ${distro_release_number}
-# or ${distro_release_name} macros is often useful here.
-#
-# Example:
-# http://www.ubuntuforums.org?release=${distro_release_number}

@@ -1,2 +1,0 @@
-# The following bookmarks will be appended to the default bookmark folders in the menu
-http://www.nhs.uk/pages/home.aspx NHS Choices Home Page

@@ -1,2 +1,0 @@
-# The following bookmarks will be appended to the default bookmark folders in the toolbar
-https://portal.nhs.net/ NHSmail

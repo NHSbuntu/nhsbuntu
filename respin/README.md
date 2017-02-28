@@ -1,3 +1,45 @@
+## Build Instructions (WIP)
+
+Ensure you have `dpkg-dev` `syslinux-utils` `ubuntu-defaults-builder` installed:
+
+`sudo apt install -y ubuntu-defaults-builder syslinux-utils dpkg-dev`
+
+Create a directory for the eventual image ISO
+
+`mkdir nhsbuntu-default-images`
+
+Clone the NHSbuntu default settings from GitHub (this will create another directory called nhsbuntu-default-**settings**)
+
+`git clone git@github.com:open-health-hub/nhsbuntu-default-settings.git`
+
+Enter the default settings directory
+
+`cd nhsbuntu-default-settings`
+
+Build the package lists whicih will be used to build the ISO in a moment
+
+`dpkg-buildpackage`
+
+move into the images directory
+
+`cd ../nhsbuntu-default-image`
+
+Start the ISO building (takes 5-10 minutes, possibly more depending on your download speed and local machine performance)
+
+`sudo ubuntu-defaults-image --package ../nhsbuntu-default-settings_0.1_all.deb --keep-apt --release xenial --flavor ubuntu-gnome`
+
+Wait for the downloads and building to complete
+
+You should now have 2 large ISO files in the nhsbuntu-default-images directory.
+
+
+### Testing/experimentation with the ISO in Virtualbox
+
+### Burning to a CD/DVD/USB
+
+
+## Resources we used in the creation of NHSbuntu
+
 How to change Live CD splash screen - http://askubuntu.com/questions/10258/how-to-change-live-cd-splash-screen
 
 Can I build a Ubuntu ISO from a manifest? http://askubuntu.com/questions/83617/can-i-build-a-ubuntu-iso-from-a-manifest

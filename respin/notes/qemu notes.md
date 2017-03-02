@@ -1,7 +1,7 @@
 ## qemu-img
 
 ```
-qemu-img create -f qcow2 nhsbuntu.img 8G
+qemu-img create -f qcow2 nhsbuntu.img 16G
 ```
 
 ## qemu-system

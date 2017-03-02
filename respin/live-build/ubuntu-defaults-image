@@ -206,7 +206,7 @@ rm -f .stage/config
 
 SUITE="$SUITE" PROJECT="$FLAVOR" ARCH="$ARCH" LB_ARCHITECTURES="$ARCH" \
     LB_MIRROR_BOOTSTRAP="$MIRROR" LB_MIRROR_CHROOT_SECURITY="$SECURITY_MIRROR" \
-    IMAGEFORMAT=squashfs BINARYFORMAT=iso-hybrid LB_ISO_VOLUME="NHSbuntu xenial $(date +%Y%m%d-%H:%M)" lb config
+    IMAGEFORMAT=squashfs BINARYFORMAT=iso-hybrid LB_ISO_TITLE="NHSbuntu" LB_ISO_VOLUME="NHSbuntu xenial $(date +%Y%m%d-%H:%M)" lb config
 
 if [ "$COMPONENTS" ]; then
     sed -i "s/^\\(LB_PARENT_ARCHIVE_AREAS=\\).*/\\1\"$COMPONENTS\"/" \
@@ -214,7 +214,7 @@ if [ "$COMPONENTS" ]; then
 fi
 
 sed -i "s/^\\(LB_SYSLINUX_THEME=\\).*/\\1\"ubuntu-$SUITE\"/" config/binary
-echo "ISO_TITLE=\"NHSbuntu\"" >> config/binary
+echo "LB_ISO_TITLE=\"NHSbuntu\"" >> config/binary
 
 if [ "${PACKAGE%.deb}" = "$PACKAGE" ]; then
     # package name, apt-get'able
@@ -301,4 +301,4 @@ else
 fi
 EOF
 
-DISPLAY= $SUDO PROJECT="$FLAVOR" ARCH="$ARCH" LB_ISO_VOLUME="NHSbuntu xenial $(date +%Y%m%d-%H:%M)" lb build
+DISPLAY= $SUDO PROJECT="$FLAVOR" ARCH="$ARCH" LB_ISO_VOLUME="NHSbuntu xenial $(date +%Y%m%d-%H:%M)" LB_ISO_TITLE="NHSbuntu" lb build

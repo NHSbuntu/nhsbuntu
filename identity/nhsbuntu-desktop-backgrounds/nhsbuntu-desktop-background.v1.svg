@@ -29,16 +29,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="1394.0291"
-     inkscape:cy="420.72304"
+     inkscape:cx="1890.5443"
+     inkscape:cy="416.68243"
      inkscape:document-units="px"
      inkscape:current-layer="g4275"
      showgrid="false"
      units="px"
-     inkscape:window-width="3200"
-     inkscape:window-height="1671"
+     inkscape:window-width="1920"
+     inkscape:window-height="1028"
      inkscape:window-x="0"
-     inkscape:window-y="55"
+     inkscape:window-y="161"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -85,7 +85,7 @@
                height="65.714287"
                x="1159.2858"
                y="970" /></flowRegion><flowPara
-             id="flowPara3444"></flowPara></flowRoot>        <g
+             id="flowPara3444" /></flowRoot>        <g
            id="g4252"
            transform="matrix(5.5592522,0,0,5.5592522,-4147.624,-1036.472)">
           <g
@@ -122,15 +122,15 @@
         <text
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           x="1299.3011"
-           y="352.0304"
+           x="1693.3011"
+           y="354.0304"
            id="text4290"
            sodipodi:linespacing="125%"><tspan
              sodipodi:role="line"
-             x="1299.3011"
-             y="352.0304"
+             x="1693.3011"
+             y="354.0304"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:125%;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
-             id="tspan4294">an operating system for the NHS</tspan></text>
+             id="tspan4154">simple tech for the NHS</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"

@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="nhsbuntu_logo.svg"
-   inkscape:export-filename="/home/robd/Development/nhsbuntu/identity/nhsbuntu_logo.png"
+   inkscape:export-filename="/home/robd/Development/nhsbuntu-project/nhsbuntu-base/identity/nhsbuntu-logo/nhsbuntu_logo.png"
    inkscape:export-xdpi="53.599998"
    inkscape:export-ydpi="53.599998">
   <defs
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="380.16958"
-     inkscape:cy="38.526171"
+     inkscape:cx="340.52672"
+     inkscape:cy="37.0976"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -52,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -86,12 +86,14 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:160.57836914px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#007ac2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:italic;font-weight:500;font-size:160.57500903px;line-height:125%;font-family:Ubuntu;letter-spacing:0px;word-spacing:0px;fill:#007ac2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Ubuntu, Medium Italic';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
        x="318.48447"
        y="273.1424"
        id="text4148"
        sodipodi:linespacing="125%"
-       transform="scale(0.95944732,1.0422667)"><tspan
+       transform="scale(0.95944732,1.0422667)"
+       inkscape:export-xdpi="53.599998"
+       inkscape:export-ydpi="53.599998"><tspan
          sodipodi:role="line"
          id="tspan4150"
          x="318.48447"

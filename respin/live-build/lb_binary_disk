@@ -61,7 +61,7 @@ case "${LB_MODE}" in
 		;;
 
 	ubuntu)
-		TITLE="$ISO_TITLE"
+		TITLE="$LB_ISO_TITLE"
 		STRING="Build ${ARCHITECTURE}"
 		TRACE=""
 		;;

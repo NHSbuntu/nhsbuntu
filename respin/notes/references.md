@@ -11,7 +11,13 @@ $ ~/Development/nhsbuntu-project/nhsbuntu-default-settings $ dpkg-buildpackage
 
 ## live-build
 
+
+ 1817  export LB_ISO_TITLE="NHSbuntu"
+ 1818  export LB_ISO_VOLUME="NHSbuntu Xenial $(date +%Y%m%d-%H:%M)"
+
+
 /usr/lib/live/build/lb_binary_disk
+
 
 echo "${TITLE} ${VERSION} \"${DISTRIBUTION}\" - ${STRING} LIVE Binary $(date +%Y%m%d-%H:%M)" > binary/.disk/info
 

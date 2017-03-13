@@ -1,6 +1,6 @@
 NHSbuntu is a free, Ubuntu-based Linux operating system for the NHS. It's a secure, reliable OS that excels in both clinical and non-clinical NHS settings, and comes with the right stuff to be productive - out of the box.
 
-For more information, visit https://open-health-hub.github.io/nhsbuntu/
+For more information, visit http://nhsbuntu.openhealthhub.org/
 
 # Roadmap
 * alpha testing x86 NHSbuntu  to be available by Summer 2017

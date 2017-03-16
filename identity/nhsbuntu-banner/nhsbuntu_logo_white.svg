@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="224.77356mm"
+   height="42.419292mm"
+   viewBox="0 0 796.44175 150.30458"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="nhsbuntu_logo_white.svg"
+   inkscape:export-filename="/home/robd/Development/nhsbuntu-project/nhsbuntu-base/identity/nhsbuntu-logo/nhsbuntu_logo.png"
+   inkscape:export-xdpi="53.599998"
+   inkscape:export-ydpi="53.599998">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#000000"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.86"
+     inkscape:cx="166.59815"
+     inkscape:cy="35.669029"
+     inkscape:document-units="px"
+     inkscape:current-layer="g4210"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1029"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-text-baseline="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(50.499976,-143.32899)">
+    <g
+       style="overflow:visible"
+       id="g4210"
+       transform="matrix(1.2845263,0,0,1.3156726,-60.096425,143.32899)"
+       inkscape:export-filename="/home/robd/Documents/nhsbuntu.png"
+       inkscape:export-xdpi="53.599998"
+       inkscape:export-ydpi="53.599998">
+      <polyline
+         style="fill:#ffffff;fill-opacity:1"
+         points="17.6,6.68,37.173,6.68,49.19,47.34,49.356,47.34,57.586,6.68,72.377,6.68,59.943,65.322,40.45,65.322,28.184,24.742,28.015,24.742,19.868,65.322,5.079,65.322"
+         id="polyline4200"
+         transform="scale(1.6666667,1.6666667)" />
+      <polyline
+         style="fill:#ffffff;fill-opacity:1"
+         points="78.163,6.68,93.874,6.68,89.252,29.112,107.82,29.112,112.439,6.68,128.148,6.68,115.968,65.322,100.256,65.322,105.469,40.201,86.898,40.201,81.694,65.322,65.98,65.322"
+         id="polyline4202"
+         transform="scale(1.6666667,1.6666667)" />
+      <path
+         style="fill:#ffffff;fill-opacity:1"
+         inkscape:connector-curvature="0"
+         d="m 282.46667,33.256667 c -5.04166,-2.38 -11.90333,-4.485 -21.56666,-4.485 -10.355,0 -18.75334,1.546667 -18.75334,9.383334 0,13.863333 37.94,8.68 37.94,38.368334 0,27.025005 -25.06166,34.023335 -47.74667,34.023335 -10.08333,0 -21.705,-2.38 -30.24666,-5.04167 l 6.17,-19.876665 c 5.18,3.356667 15.535,5.598333 24.07666,5.598333 8.12167,0 20.86834,-1.54 20.86834,-11.621666 0,-15.686667 -37.95167,-9.805001 -37.95167,-37.390001 0,-25.200001 22.125,-32.7650008 43.545,-32.7650008 12.04834,0 23.39,1.2566668 29.965,4.3416668"
+         id="path4204" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:italic;font-weight:500;font-size:160.57500903px;line-height:125%;font-family:Ubuntu;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Ubuntu, Medium Italic';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
+       x="318.48447"
+       y="273.1424"
+       id="text4148"
+       sodipodi:linespacing="125%"
+       transform="scale(0.95944732,1.0422667)"
+       inkscape:export-xdpi="53.599998"
+       inkscape:export-ydpi="53.599998"><tspan
+         sodipodi:role="line"
+         id="tspan4150"
+         x="318.48447"
+         y="273.1424">buntu</tspan></text>
+  </g>
+</svg>

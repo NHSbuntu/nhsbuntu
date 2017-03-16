@@ -16,9 +16,9 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="nhsbuntu_logo_white.svg"
-   inkscape:export-filename="/home/robd/Development/nhsbuntu-project/nhsbuntu-base/identity/nhsbuntu-logo/nhsbuntu_logo.png"
-   inkscape:export-xdpi="53.599998"
-   inkscape:export-ydpi="53.599998">
+   inkscape:export-filename="/home/robd/Desktop/nhsbuntu_logo_white.png"
+   inkscape:export-xdpi="99.996956"
+   inkscape:export-ydpi="99.996956">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -29,16 +29,16 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.86"
-     inkscape:cx="166.59815"
-     inkscape:cy="35.669029"
+     inkscape:cx="-115.37859"
+     inkscape:cy="33.343448"
      inkscape:document-units="px"
      inkscape:current-layer="g4210"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1029"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
-     inkscape:window-maximized="1"
+     inkscape:window-width="871"
+     inkscape:window-height="466"
+     inkscape:window-x="722"
+     inkscape:window-y="305"
+     inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -52,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

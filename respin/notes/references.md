@@ -1,28 +1,11 @@
 ## Build Package
-
-$ ~/Development/nhsbuntu-project/nhsbuntu-default-settings $ pwd
-/Development/nhsbuntu-project/nhsbuntu-default-settings
 $ ~/Development/nhsbuntu-project/nhsbuntu-default-settings $ dpkg-buildpackage
 
-
 ## ubuntu-defaults-image
-
 /usr/bin/ubuntu-defaults-image
 
 ## live-build
-
-
- 1817  export LB_ISO_TITLE="NHSbuntu"
- 1818  export LB_ISO_VOLUME="NHSbuntu Xenial $(date +%Y%m%d-%H:%M)"
-
-
-/usr/lib/live/build/lb_binary_disk
-
-
-echo "${TITLE} ${VERSION} \"${DISTRIBUTION}\" - ${STRING} LIVE Binary $(date +%Y%m%d-%H:%M)" > binary/.disk/info
-
-
-
+sudo LB_ISO_TITLE="NHSbuntu" LB_ISO_VOLUME="NHSbuntu Xenial $(date +%Y%m%d-%H:%M)" ubuntu-defaults-image --ppa nhsbuntu/ppa --release xenial --flavor ubuntu-gnome --package nhsbuntu-default-settings
 
 ## ubuntu-defaults-builder package in Ubuntu
 https://launchpad.net/ubuntu/+source/ubuntu-defaults-builderhttps://launchpad.net/ubuntu/+source/ubuntu-defaults-builder

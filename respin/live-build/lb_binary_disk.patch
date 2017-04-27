@@ -1,0 +1,11 @@
+--- /usr/lib/live/build/lb_binary_disk	2017-04-27 22:51:45.077830696 +0100
++++ /home/robd/Development/nhsbuntu-project/nhsbuntu-base/respin/live-build/lb_binary_disk	2017-04-27 22:51:51.481779063 +0100
+@@ -61,7 +61,7 @@
+ 		;;
+ 
+ 	ubuntu)
+-		TITLE="Ubuntu"
++		TITLE="$LB_ISO_TITLE"
+ 		STRING="Build ${ARCHITECTURE}"
+ 		TRACE=""
+ 		;;

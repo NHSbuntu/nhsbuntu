@@ -3,10 +3,12 @@
 # First script for 'nhsbox'
 
 echo "INFO: Installing cUrl"
-sudo apt-get -y install curl > /dev/null 2>&1
+sudo apt-get -y install curl unzip > /dev/null 2>&1
 
 # Global vars
 VBOXLATEST=`curl -sS http://download.virtualbox.org/virtualbox/LATEST.TXT`
+VAGRANTVERS=1.9.4
+PACKERVERS=1.0.0
 
 # Virtualbox
 echo "INFO: Adding Oracle keys to APT"
@@ -31,9 +33,20 @@ rm /tmp/Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack
 
 # Vagrant
 echo "INFO: Installing Vagrant"
-wget -q https://releases.hashicorp.com/vagrant/1.9.3/vagrant_1.9.3_x86_64.deb -O /tmp/vagrant_1.9.3_x86_64.deb
-sudo dpkg -i /tmp/vagrant_1.9.3_x86_64.deb > /dev/null 2>&1
-rm /tmp/vagrant_1.9.3_x86_64.deb
+wget -q https://releases.hashicorp.com/vagrant/${VAGRANTVERS}/vagrant_${VAGRANTVERS}_x86_64.deb -O /tmp/vagrant_${VAGRANTVERS}_x86_64.deb
+sudo dpkg -i /tmp/vagrant_${VAGRANTVERS}_x86_64.deb > /dev/null 2>&1
+rm /tmp/vagrant_${VAGRANTVERS}_x86_64.deb
+
+# Packer
+echo "INFO: Installing Packer"
+mkdir -p ~/bin
+wget -q https://releases.hashicorp.com/packer/${PACKERVERS}/packer_${PACKERVERS}_linux_amd64.zip -O packer_${PACKERVERS}_linux_amd64.zip
+unzip packer_${PACKERVERS}_linux_amd64.zip
+mv packer ~/bin/packer-${PACKERVERS}
+chmod +x ~/bin/packer-${PACKERVERS}
+ln -s ~/bin/packer-${PACKERVERS} ~/bin/packer
+rm packer_${PACKERVERS}_linux_amd64.zip
+
 
 # Remmina
 echo "INFO: Install Remmina"

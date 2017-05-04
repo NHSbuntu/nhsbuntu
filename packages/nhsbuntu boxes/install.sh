@@ -13,13 +13,23 @@ check_deps(){
 }
 
 # Global vars
-export PACKERVERS=1.0.0
-export VAGRANTVERS=1.9.4
-export VBOXLATEST=`curl -sS http://download.virtualbox.org/virtualbox/LATEST.TXT`
+set_versions(){
+  export PACKERVERS=1.0.0
+  export VAGRANTVERS=1.9.4
+  export VBOXLATEST=`wget -q -O - http://download.virtualbox.org/virtualbox/LATEST.TXT`
+}
+
+print_versions(){
+  echo "INFO: Target application versions"
+  echo "INFO: Packer version $PACKERVERS"
+  echo "INFO: Vagrant version $VAGRANTVERS"
+  echo "INFO: VirtualBox version $VBOXLATEST"
+}
 
 case "$1" in
       developer)
       check_deps
+      set_versions
       ./packer.sh
       ./virtualbox.sh
       ./vagrant.sh
@@ -27,12 +37,17 @@ case "$1" in
       ;;
       user)
       check_deps
+      set_versions
 			./virtualbox.sh
       ./vagrant.sh
       ./remmina.sh
 			;;
+      info)
+      set_versions
+      print_versions
+      ;;
        *)
-      echo "Usage: $0 {developer|user}"
+      echo "Usage: $0 {developer|user|info}"
 esac
 
 exit 0

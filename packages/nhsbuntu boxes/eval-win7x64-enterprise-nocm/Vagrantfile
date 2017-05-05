@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "win7x64-base"
-  config.vm.box_url = "file:///home/robd/Development/others/boxcutter/windows/box/virtualbox/eval-win7x64-enterprise-nocm-1.0.4.box"
+  config.vm.box_url = "https://www.nhsbuntu.org/vagrant/eval-win7x64-enterprise-nocm-1.0.4.box"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

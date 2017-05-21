@@ -7,7 +7,7 @@ If you're an IT Professional, a clinician who codes (or one that doesn't) or
 you're just interested in the NHS IT space you can help NHSbuntu meet it's goal.
 
 # Getting started
-Explain the way that the overall project gets pulled together.
+*TODO* Explain the way that the overall project gets pulled together.
 
 ## Adding integration with NHS technology
 The NHS has a big estate of technology it uses, most of which is locked into the
